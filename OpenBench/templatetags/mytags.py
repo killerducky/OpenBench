@@ -60,7 +60,7 @@ def longStatBlock(test):
 
     tokens = test.devoptions.split(' ')
     threads = tokens[0].split('=')[1]
-    hash = tokens[1].split('=')[1]
+    network = tokens[1].split('=')[1]
 
     lower, elo, upper = ELO(test.wins, test.losses, test.draws)
     error = max(upper - elo, elo - lower)
@@ -74,7 +74,7 @@ def longStatBlock(test):
     eloupper   = twoDigitPrecision(test.eloupper)
 
     return 'ELO   | {0} +- {1} (95%)\n'.format(elo, error) \
-         + 'SPRT  | {0}s Threads={1} Hash={2}MB\n'.format(test.timecontrol, threads, hash) \
+         + 'SPRT  | {0}s Threads={1} Network={2}\n'.format(test.timecontrol, threads, network) \
          + 'LLR   | {0} ({1}, {2}) [{3}, {4}]\n'.format(currentllr, lowerllr, upperllr, elolower, eloupper) \
          + 'Games | N: {0} W: {1} L: {2} D: {3}'.format(test.games, test.wins, test.losses, test.draws) \
 
